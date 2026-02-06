@@ -1,0 +1,17 @@
+@import 'tailwindcss';
+@import 'uniwind';
+
+@import 'heroui-native/styles';
+@source './node_modules/heroui-native/lib';
+@source './src';
+
+@theme {
+  --color-accent: #00599D;
+  --color-accent-foreground: #FFFFFF;
+  --color-primary: #00599D;
+  --color-primary-foreground: #FFFFFF;
+  --color-separator: #E5E7EB;
+  --color-muted: #6B7280;
+  --color-background: #FFFFFF;
+  --color-foreground: #111827;
+}

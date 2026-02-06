@@ -1,12 +1,42 @@
 {
   "expo": {
-    "scheme": "acme",
-    "userInterfaceStyle": "automatic",
-    "orientation": "default",
+    "name": "OpenHouse 2026",
+    "slug": "open-house-social-app-2026",
+    "scheme": "openhouse2026",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "icon": "./cicc.png",
+    "splash": {
+      "backgroundColor": "#00599D"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.openhouse2026.social",
+      "infoPlist": {
+        "NSCameraUsageDescription": "OpenHouse necesita acceso a tu cámara para tomar fotos y publicarlas.",
+        "UIDesignRequiresCompatibility": true
+      }
+    },
+    "android": {
+      "package": "com.openhouse2026.social",
+      "adaptiveIcon": {
+        "backgroundColor": "#00599D"
+      },
+      "permissions": ["CAMERA"]
+    },
+    "plugins": [
+      "expo-camera",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#00599D"
+        }
+      ]
+    ],
     "web": {
       "output": "static"
-    },
-    "name": "open-house-social-app-2026",
-    "slug": "open-house-social-app-2026"
+    }
   }
 }

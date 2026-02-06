@@ -1,31 +1,30 @@
-import { StatusBar } from "expo-status-bar";
-import { Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, ActivityIndicator } from "react-native";
+import { Redirect } from "expo-router";
+import { getSession } from "../lib/session";
 
-export default function App() {
-  return (
-    <View className="flex-1 bg-white dark:bg-black items-center justify-center px-8">
-      {/* Heading */}
-      <Text className="text-4xl font-extrabold text-gray-800 dark:text-white mb-3 tracking-tight">
-        🚀 Welcome
-      </Text>
+export default function Index() {
+  const [checking, setChecking] = useState(true);
+  const [hasSession, setHasSession] = useState(false);
 
-      {/* Subheading */}
-      <Text className="text-xl dark:text-white text-gray-700 mb-8 text-center leading-relaxed">
-        Build beautiful apps with{" "}
-        <Text className="text-blue-500 font-semibold">
-          Expo (Router) + Uniwind 🔥
-        </Text>
-      </Text>
+  useEffect(() => {
+    getSession().then((session) => {
+      setHasSession(!!session?.userId);
+      setChecking(false);
+    });
+  }, []);
 
-      {/* Instruction text */}
-      <Text className="text-base text-gray-600 dark:text-white text-center max-w-sm">
-        Start customizing your app by editing{" "}
-        <Text className="font-semibold text-gray-800 dark:text-white">
-          app/index.tsx
-        </Text>
-      </Text>
+  if (checking) {
+    return (
+      <View className="flex-1 items-center justify-center bg-background">
+        <ActivityIndicator size="large" color="#00599D" />
+      </View>
+    );
+  }
 
-      <StatusBar style="dark" />
-    </View>
-  );
+  if (!hasSession) {
+    return <Redirect href="/session" />;
+  }
+
+  return <Redirect href="/(tabs)/feed" />;
 }
