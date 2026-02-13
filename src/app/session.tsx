@@ -6,6 +6,7 @@ import {
   Platform,
   ScrollView,
   Alert,
+  useColorScheme,
 } from "react-native";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
@@ -18,6 +19,8 @@ import { PRIMARY_COLOR } from "../lib/constants";
 export default function SessionScreen() {
   const router = useRouter();
   const upsertUser = useMutation(api.users.upsertUserFromSession);
+  const colorScheme = useColorScheme();
+  const textColor = colorScheme === 'dark' ? '#FFF' : '#000';
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -97,6 +100,8 @@ export default function SessionScreen() {
               onChangeText={setUsername}
               autoCapitalize="none"
               autoCorrect={false}
+              placeholderTextColor="#9CA3AF"
+              style={{ color: textColor }}
             />
           </TextField>
 
@@ -109,6 +114,8 @@ export default function SessionScreen() {
               keyboardType="email-address"
               autoCapitalize="none"
               autoCorrect={false}
+              placeholderTextColor="#9CA3AF"
+              style={{ color: textColor }}
             />
           </TextField>
 
@@ -119,6 +126,8 @@ export default function SessionScreen() {
               value={phone}
               onChangeText={setPhone}
               keyboardType="phone-pad"
+              placeholderTextColor="#9CA3AF"
+              style={{ color: textColor }}
             />
           </TextField>
 

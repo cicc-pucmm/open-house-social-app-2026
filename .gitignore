@@ -40,3 +40,7 @@ app-example
 .vscode/
 .github/
 .agents/
+
+# Deployment
+.netlify/
+.vercel/

@@ -6,6 +6,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   Pressable,
+  useColorScheme,
 } from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useQuery, useMutation } from "convex/react";
@@ -42,6 +43,8 @@ const CommentInputBar = memo(function CommentInputBar({
   const [commentText, setCommentText] = useState("");
   const [isSending, setIsSending] = useState(false);
   const addComment = useMutation(api.comments.addComment);
+  const colorScheme = useColorScheme();
+  const textColor = colorScheme === 'dark' ? '#FFF' : '#000';
 
   const handleSend = useCallback(async () => {
     if (!commentText.trim() || isSending) return;
@@ -66,6 +69,8 @@ const CommentInputBar = memo(function CommentInputBar({
         value={commentText}
         onChangeText={setCommentText}
         className="flex-1"
+        placeholderTextColor="#9CA3AF"
+        style={{ color: textColor }}
         returnKeyType="send"
         onSubmitEditing={handleSend}
       />

@@ -15,7 +15,8 @@
       "bundleIdentifier": "com.openhouse2026.social",
       "infoPlist": {
         "NSCameraUsageDescription": "OpenHouse necesita acceso a tu cámara para tomar fotos y publicarlas.",
-        "UIDesignRequiresCompatibility": true
+        "UIDesignRequiresCompatibility": true,
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {
@@ -23,7 +24,11 @@
       "adaptiveIcon": {
         "backgroundColor": "#00599D"
       },
-      "permissions": ["CAMERA"]
+      "permissions": [
+        "CAMERA",
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "plugins": [
       "expo-camera",
@@ -36,7 +41,15 @@
       ]
     ],
     "web": {
-      "output": "static"
+      "output": "static",
+      "bundler": "metro",
+      "favicon": "./cicc.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "7db79d40-9fa5-4499-9696-97c02fd7b986"
+      },
+      "convexUrl": "https://wry-ant-826.convex.cloud"
     }
   }
 }

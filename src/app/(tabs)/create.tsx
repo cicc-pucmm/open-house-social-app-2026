@@ -8,6 +8,7 @@ import {
   Dimensions,
   KeyboardAvoidingView,
   Platform,
+  useColorScheme,
 } from "react-native";
 import { CameraView, CameraType, useCameraPermissions } from "expo-camera";
 import * as ImageManipulator from "expo-image-manipulator";
@@ -38,6 +39,8 @@ export default function CreateScreen() {
   const router = useRouter();
   const { session, userId } = useSession();
   const [permission, requestPermission] = useCameraPermissions();
+  const colorScheme = useColorScheme();
+  const textColor = colorScheme === 'dark' ? '#FFF' : '#000';
 
   // Camera state
   const cameraRef = useRef<CameraView>(null);
@@ -111,6 +114,7 @@ export default function CreateScreen() {
     try {
       const photo = await cameraRef.current.takePictureAsync({
         quality: 0.9,
+        mute: true,
       });
       if (photo?.uri) {
         setCurrentPreview(photo.uri);
@@ -446,6 +450,8 @@ export default function CreateScreen() {
               if (text.length <= MAX_CAPTION_LENGTH) setCaption(text);
             }}
             className="min-h-[100]"
+            placeholderTextColor="#9CA3AF"
+            style={{ color: textColor }}
           />
           <Text className="text-xs text-muted text-right mt-1">
             {caption.length}/{MAX_CAPTION_LENGTH}
